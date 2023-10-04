@@ -2,1385 +2,573 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    
-     <div id="home" class="slider">
-        <div id="main_slider" class="carousel slide" data-ride="carousel">
-           <ol class="carousel-indicators">
-              <li data-target="#main_slider" data-slide-to="0" class="active"></li>
-              <li data-target="#main_slider" data-slide-to="1"></li>
-              <li data-target="#main_slider" data-slide-to="2"></li>
-           </ol>
-           <div class="carousel-inner">
-              <div class="carousel-item active">
-                 <img class="d-block w-100" src="imgs/img.jpg" alt="slider_img">
-                 <div class="ovarlay_slide_cont">
-                    <h4>HARMONISEZ VOTRE EXPERIENCE</h4>
-                    <p>Connectez-vous avec des decorateurs talentueux en un click</p>
-                    <a class="blue_bt" href="#">Voir plus</a>
-                 </div>
-              </div>
-              <div class="carousel-item">
-                 <img class="d-block w-100" src="imgs/maison.jpg" alt="slider_img">
-                 <div class="ovarlay_slide_cont">
-                    <h4>HARMONISEZ VOTRE EXPERIENCE</h4>
-                    <p>Connectez-vous avec des decorateurs talentueux en un click</p>
-                    <a class="blue_bt" href="#">Voir plus</a>
-                 </div>
-              </div>
-           </div>
-           <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-           <img src="imgs/left.png" alt="#" />
-           </a>
-           <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-           <img src="imgs/right.png" alt="#" />
-           </a>
-        </div>
-     </div>
-     <div id="about" class="about_section layout_padding">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-5">
-                 <h3 style="text-transform: none !important">S'INSPIREZ-VOUS</h3>
-                 <img src="imgs/cham2.jpg" alt="#" width="500px"/>
-              </div>
-              <div class="col-md-6 offset-md-1">
-                 <div class="full text_align_center">
-                    <img class="img-responsive" src="imgs/about.png" alt="#" />
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div id="hiw" class="hiw_section layout_padding" style="background: #1a2428;">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-7">
-                 <a href class="bouton">GATEGORIES</a>
-                 <p class="white_font">Le type de bien concerné par les travaux de décoration</p>
-              </div>
-              <div class="col-md-5">
-              </div>
-           </div>
-           <div class="row">
-              <div class="col-md-4">
-                 <img class="margin_top_30 img-responsive" src="imgs/mai.jpg" alt="#" />
-                 <h3 class="blog_head">Appartement et Maison</h3>
-              </div>
-              <div class="col-md-4">
-                 <img class="margin_top_30 img-responsive" src="imgs/restaurant2.jpg" alt="#" />
-                 <h3 class="blog_head">Restaurant</h3>
-              </div>
-              <div class="col-md-4">
-                 <img class="margin_top_30 img-responsive" src="imgs/bureauu.jpg" alt="#" />
-                 <h3 class="blog_head">Bureau</h3>
-              </div>
-           </div>
-        </div>
-     </div>
-     <div id="wcs" class="hiw_section layout_padding">
-        <div class="container">
-           <div class="row">
-              <div class="col-md-12 text_align_center">
-                 
-              
-           </div>
-           <div class="row">
-              <div class="col-md-11">
-                 <div class="full testimonial_blog">
-                    <p>DECOUVREZ LA REALISATION DE NOS DECORATEURS</p>
-                    <div class="row">
-                       <div class="col-md-8 service_blog">
-                          <img class="margin_top_30 img-responsive" src="imgs/mai.jpg" alt="#" />
-                          <a class="blue_bt" href="#">Voir plus</a>
-                       </div>
-                       <div class="col-md-4 service_blog">
-                          <img class="margin_top_30 img-responsive" src="imgs/deco2.jpg" alt="#" />
-                          <a class="blue_bt" href="#">Voir plus</a>
-                       </div>
-                                </div>
-                 </div>
-              </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </div>
+   
   
+<head>
+    <meta charset="utf-8">
+    <title>WEBUILD -  Construction Company Website Template Free</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/stylee.css" rel="stylesheet">
+    <link href="css/bootstrap.min3.css" rel="stylesheet">
+</head>
+
+<body>
+  
+  <!-- Page Header Start -->
+    <div class="container-fluid page-header">
+
+        @if (Auth::user()->role == 2)
+        <h1 class="display-3 text-uppercase text-white mb-3">Nos Service</h1>
+        @elseif (Auth::user()->role == 3)
+        <h1 class="display-3 text-uppercase text-white mb-3">Espace Decorateur</h1>
+        @elseif (Auth::user()->role == 1)
+        <h1 class="display-3 text-uppercase text-white mb-3">Dashboard Admin</h1>
+        @endif
+    </div>
+    <!-- Page Header Start -->
+
+
+    <!-- Services Start -->
+    <div class="container-fluid bg-light py-6 px-5">
+      @if (Auth::user()->role == 3)
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;"> 
+        <h1 class="display-5 text-uppercase mb-4">Nous fournissons <span class="text-primary">le meilleur espace</span> pour les décorateurs</h1>
+    </div>
+      @elseif (Auth::user()->role == 2)
+      <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+        <h1 class="display-5 text-uppercase mb-4">Nous fournissons <span class="text-primary">les meilleurs services</span> de décoration</h1>
+    </div>
+      @endif
+      {{-- @if (Auth::user()->role == 3)
      
-     <footer>
-        <div class="container">
-           <div class="row">
-              <div class="col-lg-3 col-md-6 col-12">
-                 <div class="footer_blog_section">
-                    <img src="imgs/logo.jpeg" alt="#" width="70px" />
-                    <p style="margin-top: 5px;">Nous sommes une plateforme de mise en relation entre les décorateurs intérieurs et les clients</p>
-                 </div>
+      @elseif (Auth::user()->role == 2)
+    
+      @endif
+        --}}
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item bg-white d-flex flex-column align-items-center text-center">
+                    
+                    @if (Auth::user()->role == 3)
+                    <img class="img-fluid" src="{{ asset('imgs/service-66.jpg')}}" alt="">
+      @elseif (Auth::user()->role == 2)
+      <img class="img-fluid" src="{{ asset('imgs/service-6.jpg')}}" alt="">
+      @elseif (Auth::user()->role == 1)
+      <img class="img-fluid" src="{{ asset('imgs/user-2.jpg')}}" alt="">
+      @endif
+                    
+                    <div class="service-icon bg-white">
+                        <i class="fa fa-3x fa-building text-primary"></i>
+                    </div>
+                    <div class="px-4 pb-4">
+                      @if (Auth::user()->role == 3)
+                      <h4 class="text-uppercase mb-3">Créer mon profil</h4>
+                      <p>créez votre propre profil affichant vos spécialités de travail, vos travaux antérieurs et surtout vos informations afin que les clients puissent vous trouver !</p>
+                      <a class="btn text-primary" href="{{ route('showForm') }}">Click Ici<i class="bi bi-arrow-right"></i></a>
+      @elseif (Auth::user()->role == 2)
+      <h4 class="text-uppercase mb-3">Trouvez votre décorateur spécifique</h4>
+      <p>nous vous permettons de trouver votre décorateur spécifique où vous pouvez effectuer une recherche par adresse et spécialité et voir leur travail</p>
+      <a class="btn text-primary" href="{{ route('decorators.list') }}">Click Ici<i class="bi bi-arrow-right"></i></a>
+      @elseif (Auth::user()->role == 1)
+      <h4 class="text-uppercase mb-3">Les Utilisateur</h4>
+      <p>Gestion des Utilisateur</p>
+      <a class="btn text-primary" href="{{ route('users.index') }}">Click Ici<i class="bi bi-arrow-right"></i></a>
+      @endif
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item bg-white rounded d-flex flex-column align-items-center text-center">
+                    
+                    @if (Auth::user()->role == 3)
+                    <img class="img-fluid" src="{{ asset('imgs/service-22.jpg')}}" alt="">
+      @elseif (Auth::user()->role == 2)
+      <img class="img-fluid" src="{{ asset('imgs/service-2.jpg')}}" alt="">
+      @elseif (Auth::user()->role == 1)
+      <img class="img-fluid" src="{{ asset('imgs/image-2.jpeg')}}" alt="">
+      @endif
+                    <div class="service-icon bg-white">
+                        <i class="fa fa-3x fa-home text-primary"></i>
+                    </div>
+                    <div class="px-4 pb-4">
+                      @if (Auth::user()->role == 3)
+                      <h4 class="text-uppercase mb-3">Explore Les Devis Des Clients</h4>
+                      <p>nous vous permettons de visualiser différents clients et leurs devis et vous pouvez filtrer et trouver votre client idéal dès aujourd'hui!</p>
+                      @elseif (Auth::user()->role == 2)
+                      <h4 class="text-uppercase mb-3">Demander votre devis personnalisé</h4>
+                      <p>Ici vous pouvez demander votre devis spécifique à votre goût en précisant le budget, le style et le décorateur parfait vous contactera</p>
+                      @elseif (Auth::user()->role == 1)
+                      <h4 class="text-uppercase mb-3"> devis personnalisé</h4>
+                      <p>Les Devis des Client</p>
+                      @endif
+                      @if (Auth::user()->role == 3)
+                          <a class="btn text-primary" href="{{ route('devis.index') }}">CLIQUEZ ICI <i class="bi bi-arrow-right"></i></a>
+                      @elseif (Auth::user()->role == 2)
+                          <a class="btn text-primary" href="{{ route('devis.create') }}">CLIQUEZ ICI <i class="bi bi-arrow-right"></i></a>
+                          @elseif (Auth::user()->role == 1)
+                          <a class="btn text-primary" href="{{ route('devis.index') }}">CLIQUEZ ICI <i class="bi bi-arrow-right"></i></a>
+                      @endif
+                  </div>
+                  
+                </div>
+                {{--@if (Auth::user()->role == 3|| Auth::user()->role == 2)--}}
+            </div>
+           
+            @if (Auth::user()->role == 3 || Auth::user()->role == 2)
+            <div class="col-lg-4 col-md-6">
+              <div class="service-item bg-white rounded d-flex flex-column align-items-center text-center">
+                  <img class="img-fluid" src="{{ asset('imgs/service-3.jpg')}}" alt="">
+                  <div class="service-icon bg-white">
+                      <i class="fa fa-3x fa-drafting-compass text-primary"></i>
+                  </div>
+                  <div class="px-4 pb-4">
+                      <h4 class="text-uppercase mb-3">Notre Boutique</h4>
+                      <p>Vous avez parfois besoin de produits pour décorer votre maison et cela coûte cher ?
+                          consultez notre boutique en ligne pour des décorations {{--de bonne qualité avec les meilleures offres--}} en un seul click</p>
+                      <a class="btn text-primary" href="http://clickdeco.free.nf">Read More <i class="bi bi-arrow-right"></i></a>
+                  </div>
               </div>
-              <div class="col-lg-2 col-md-6 col-12">
-                 <div class="item">
-                    <h4 class="text-uppercase">Navigation</h4>
-                    <ul>
-                       <li><a href="#">Accueil</a></li>
-                       <li><a href="#">A propos</a></li>
-                       <li><a href="#">Réalisation</a></li>
-                       <li><a href="#">Service</a></li>
-                       <li><a href="#">Contact</a></li>
-                    </ul>
-                 </div>
+          </div>
+            @elseif (Auth::user()->role == 1)
+            <div class="col-lg-4 col-md-6">
+              <div class="service-item bg-white rounded d-flex flex-column align-items-center text-center">
+                  <img class="img-fluid" src="{{ asset('imgs/service-3.jpg')}}" alt="">
+                  <div class="service-icon bg-white">
+                      <i class="fa fa-3x fa-drafting-compass text-primary"></i>
+                  </div>
+                  <div class="px-4 pb-4">
+                      <h4 class="text-uppercase mb-3">DECORATEURS</h4>
+                      <p>PROFILE DE DECORATEURS</p>
+                      <a class="btn text-primary" href="{{ route('decorators.list') }}">Read More <i class="bi bi-arrow-right"></i></a>
+                  </div>
               </div>
-              <div class="col-lg-4 col-md-6 col-12">
-                 <div class="item">
-                    <h4 class="text-uppercase">Contact</h4>
-                    <p><strong>Adresse:</strong></p>
-                    <p><img src="imgs/location.png" alt="#" /> Avenue Mouhamed V, Rabat</p>
-                    <p><strong>Téléphone:</strong></p>
-                    <p><img src="imgs/phone_icon.png" alt="#" /> 06 99 82 13 98</p>
-                 </div>
-              </div>
-              <div class="col-lg-3 col-md-6 col-12">
-                 <div class="item">
-                    <h4 class="text-uppercase">Autres</h4>
-                    <ul>
-                       <li><a href="#">Compte</a></li>
-                       <li><a href="#">Abonnement</a></li>
-                       <li><a href="#">Subscribe</a></li>
-                       <li><a href="#">Contact</a></li>
-                    </ul>
-                 </div>
-              </div>
-           </div>
+          </div>
+            @endif
+          
+                </div>
+            </div>
         </div>
-        <div class="copyright text-center">
-
-        </div>
-     </footer>
-     <style>
-        @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap');
-
-* {
-    box-sizing: border-box;
-}
-
-header {
-    background-image: url(../imgs/header.png);
-    background-size: cover;
-}
-
-.small-container {
-    width: 95%;
-    margin: 0 auto;
-}
-
-.overlay {
-    background-color: rgba(0, 0, 0, .51);
-    width: 100%;
-    height: 100%;
-}
-
-.violet-overlay {
-    background-color: rgba(189, 140, 191, .51);
-    width: 100%;
-    height: 100%;
-    padding: 70px 0;
-}
-
-.white-overlay {
-    background-color: rgba(255, 255, 255, .7);
-    height: 100%;
-    width: 100%;
-}
-
-.margin_top_30 {
-    margin-top: 30px;
-}
-
-.service_blog h3.blog_head {
-    float: left;
-    background: #4fcaff;
-    text-align: center;
-    font-size: 24px;
-    text-transform: none;
-    margin: 0;
-    min-height: 50px;
-    line-height: 50px;
-    padding: 0 50px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    max-width: 300px;
-    left: 15px;
-}
-
-.service_blog h3.blog_head::after {
-    width: 50px;
-    height: 50px;
-    content: "";
-    display: block;
-    position: absolute;
-    right: -20px;
-    background: #4fcaff;
-    top: 0;
-    transform: skew(-30deg);
-}
-
-h2 span, h1 span {
-    color: #bd8cbf;
-}
-
-li {
-    list-style-type: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-a, button {
-    transition: all .5s ease;
-}
-
-button {
-    padding: 0
-}
-
-body {
-    font-size: 1.1rem;
-}
-
-/* navbar */
-
-nav.navbar {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    font-family: 'Roboto', sans-serif;
-    background: #0c2326;
-    min-height: 95px;
-}
-
-nav.navbar a, nav.navbar ul li a {
-    color: #FFF !important;
-}
-
-nav.navbar ul li {
-    padding: 0 15px;
-    position: relative;
-}
-
-nav.navbar .search-container {
-    position: relative;
-}
-
-nav.navbar form {
-    padding: 5px;
-    background-color: white;
-    position: absolute;
-    width: 260px;
-    display: none;
-    right: 0;
-}
-
-nav.navbar form input {
-    padding: 5px 10px;
-    border: none;
-    background-color: #fff;
-    width: 100%;
-    font-weight: 300;
-    font-size: 16px;
-}
-
-.navbar-nav li a {
-    font-size: 18px;
-    font-weight: 300;
-}
-
-.layout_padding {
-    padding: 90px 0;
-}
-
-.about_section h3 {
-    font-size: 40px;
-    margin: 5px 0 25px 0;
-    font-weight: 600;
-}
-
-.about_section h4 {
-    color: #4fcaff;
-    font-size: 18px;
-    margin: 0;
-}
-
-p {
-    font-size: 18px;
-    font-weight: 300;
-}
-
-.full {
-    width: 100%;
-    float: left;
-    margin: 0; 
-}
-
-.text_align_center {
-    text-align: center;
-}
-
-.img-responsive {
-    max-width: 100%;
-}
-
-.white_font {
-    color: #fff !important;
-    background-color: #10d0e7;
-}
-.bouton {
-    color: #fff;
-    background-color: #d2c107;
-    text-align: center;
-}
-.h3, h3 {
-    font-size: 40px;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-}   
-
-
-
-/* header */
-
-header {
-    position: relative;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-}
-
-header .container {
-    height: 100%
-}
-
-header .container > div {
-    margin: 0 auto;
-    position: relative;
-/*    text-align: center;*/
-}
-
-header .container > div h1 {
-    font-size: 90px;
-}
-
-header button {
-    background-color: transparent;
-    display: block;
-    border: 1px solid #FFF;
-    border-radius: 50px;
-    padding: 0;
-    margin: 30px auto;
-}
-
-header button a {
-    padding: 10px 40px;
-    display: block;
-    color: #FFF;
-}
-
-header button:hover {
-    background-color: #bd8cbf;
-    border: 1px solid #bd8cbf;
-}
-
-header button:hover a {
-    color: white;
-}
-
-h3.blog_head {
-    width: 100%;
-    float: left;
-    background: #fff;
-    text-align: center;
-    font-size: 25px;
-    text-transform: uppercase;
-    color: #090101;
-    margin: 0;
-    min-height: 75px;
-    line-height: 75px;
-}
-
-/* about us */
-
-.about-us {
-    position: relative;
-    padding: 100px 0;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.about-us .row > .col-lg-6:first-of-type {
-    position: relative;
-    left: 50px;
-}
-
-.about-us .small-container > p + div {
-    padding: 70px 0;
-    background-color: white;
-    box-shadow: 5px 5px 10px #d2cfcf, -5px -5px 10px #d2cfcf;
-}
-
-.about-us .small-container > p + div h4 {
-    margin-bottom: 40px
-}
-
-.about-us .small-container .text-right p {
-    margin-bottom: 40px;
-    width: 80%;
-    float: right;
-}
-
-.about-us .small-container > p + div button {
-    background-color: #bd8cbf;
-    border: none;
-}
-
-.about-us .small-container > p + div a {
-    display: block;
-    color: #FFF;
-    padding: 10px 40px;
-}
-
-.about-us .item {
-    width: 200px;
-    position: absolute;
-    color: white;
-    background-color: #bd8cbf;
-}
-
-.about-us .item p {
-    font-size: 15px;
-}
-
-.about-us .item img {
-    width: 100%;
-    height: 150px
-}
-
-.about-us .item h5 {
-    margin: 5px 0;
-}
-
-.about-us .item p {
-    margin-bottom: 5px;
-}
-
-.about-us .item:first-of-type {
-    left: 405px;
-    bottom: 115px;
-    z-index: 2;
-    box-shadow: -2px 2px 10px #5d5959;
-}
-
-.about-us .item:nth-of-type(2) {
-    left: 105px;
-    bottom: 115px;
-    z-index: 2;
-    box-shadow: 2px 2px 10px #5d5959;
-}
-
-.about-us .item:nth-of-type(3) {
-    position: relative;
-    top: 162px;
-    left: -45px;
-}
-
-.about-us .item:nth-of-type(3) img {
-    position: absolute;
-    bottom: 70px;
-    right: 0px;
-    z-index: 0;
-}
-
-.about-us .item:last-of-type {
-    left: 268px;
-    top: 90px;
-}
-
-.about-us .first {
-    width: 100px;
-    height: 200px;
-    position: absolute;
-    background-color: #bd8cbf;
-    top: 140px;
-    z-index: -5;
-}
-
-.about-us .second {
-    width: 100px;
-    height: 200px;
-    position: absolute;
-    background-color: #bd8cbf;
-    bottom: 58px;
-    right: 34px;
-    z-index: -5;
-}
-
-.about-us .row > div > .item:nth-of-type(3) div {
-    position: relative;
-    z-index: 5;
-    background-color: #bd8cbf;
-    padding: 5px;
-}
-
-.blue_bt {
-    width: 255px;
-    height: 58px;
-    background: #080151;
-    color: #fff;
-    float: left;
-    text-align: center;
-    line-height: 58px;
-    font-size: 20px;
-    font-weight: 300;
-}
-
-.blue_bt:hover,
-.blue_bt:focus {
-    background: #fff;
-    color: #0c2326;
-}
-
-/* services */
-
-.services {
-    margin-bottom: 100px;
-    font-family: 'Open Sans', sans-serif;
-}
-
-.services .slide {
-    width: 70%;
-    margin: 0 auto;
-}
-
-.services .carousel-inner .carousel-item {
-    width: 100%;
-    height: 100%
-}
-
-.services .carousel-inner img {
-    height: 100%;
-    width: 100%;
-}
-
-.services .carousel-control-next, .services .carousel-control-prev {
-    width: 60px;
-    height: 60px;
-    background: #bd8cbf;
-    border-radius: 50%;
-}
-
-.services .carousel-control-next i, .services .carousel-control-prev i {
-    color: #000
-}
-
-.services .carousel-control-next {
-    right: 0;
-    top: 80%;
-    right: 40%;
-    background-color: #FFF;
-}
-
-.services .carousel-control-prev {
-    top: 80%;
-    left: 40%;
-}
-
-.services i {
-    color: #bd8cbf;
-}
-
-/* agency */
-
-.agency {
-    background-image: url('../imgs/agency.png');
-    font-family: 'Open Sans', sans-serif;
-    background-size: cover;
-}
-
-.agency .container > div {
-    margin: 0 auto;
-    width: 86%;
-    margin-bottom: 30px;
-}
-
-.agency .white-overlay {
-   padding: 50px 0 20px;
-}
-
-.agency .container > div > div {
-    display: inline-block;
-    position: relative
-}
-
-.agency .container > div > div img {
-    width: 500px;
-    margin: 0 20px;
-}
-
-.agency img:first-of-type, .agency img:last-of-type {
-    width: 200px;
-}
-
-.agency .container > div h2 {
-    position: absolute;
-    color: white;
-    bottom: 105px;
-    left: 195px;
-    font-size: 40px;
-}
-
-/* statistics */
-
-.statistics {
-    padding: 50px 0;
-    font-family: sans-serif;
-}
-
-.statistics i, .statistics p {
-    color: #bd8cbf;
-}
-
-.statistics i {
-    margin-bottom: 10px;
-}
-
-.statistics h3 {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.ovarlay_slide_cont {
-    background: rgba(5,3,0,0.63);
-    position: absolute;
-    width: 60%;
-    margin: 0 15%;
-    z-index: 1111111111;
-    top: 135px;
-    left: 0;
-    padding: 50px 60px 70px;
-}
-
-.ovarlay_slide_cont h2 {
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 70px;
-    font-weight: 700;
-    line-height: normal;
-    margin: 0;
-}
-
-.ovarlay_slide_cont h4 {
-    color: #4fcaff;
-    font-size: 32px;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin: 0 0 15px 0;
-    line-height: normal;
-}
-
-.ovarlay_slide_cont p {
-    color: #fff;
-    font-weight: 300;
-    margin: 0 0 30px 0;
-    font-size: 21px;
-    padding: 0 75px 0 0;
-    line-height: 28px;
-}
-
-/* contact */
-
-.contact {
-    background-image: url('../imgs/contact.png');
-    background-size: cover;
-}
-
-.contact h2 {
-    color: white;
-    margin-bottom: 30px;
-}
-
-.contact .contact-form {
-    width: 50%;
-    margin: 0 auto;
-}
-
-.contact form input, .contact form textarea {
-    width: 100%;
-    outline: none;
-    border: none;
-    padding: 5px 10px;
-}
-
-.contact form input{
-    border-radius: 50px;
-    margin-bottom: 20px;
-}
-
-.contact form textarea {
-    resize: none;
-    height: 130px;
-    border-radius: 25px;
-    margin-bottom: 30px;
-}
-
-.contact form input[type="submit"] {
-    width: 130px;
-    height: 40px;
-    padding: 0;
-    line-height: 40px;
-    background-color: #ef44f8;
-    color: white;
-    margin: 0 auto;
-    display: block;
-}
-
-/* footer */
-
-footer, footer a {
-    color: white;
-}
-
-footer {
-    display: block;
-    overflow: hidden;
-    background-color: #0c2326;
-}
-
-footer a:hover {
-    color: #4fcaff;
-}
-
-footer .container > ul {
-    overflow: hidden;
-    margin: 30px 0;
-    padding-left: 0;
-}
-
-footer .container > ul li {
-    float: left;
-    padding-right: 25px;
-}
-
-footer .item h4 {
-    margin-bottom: 20px
-}
-
-footer .item p.address {
-    line-height: 1.2;
-    font-size: 16px;
-}
-
-footer .item ul {
-    padding-left: 0;
-}
-
-footer .item ul li {
-    margin-bottom: 3px;
-    font-size: 16px;
-}
-
-footer .date p {
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: 300;
-}
-
-footer .item form {
-    overflow: hidden;
-}
-
-footer .item form input {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 5px 10px;
-}
-
-footer .item form input[type="submit"] {
-    width: 100px;
-    height: 40px;
-    line-height: 4px;
-    background-color: #ef44f8;
-    border: none;
-    float: right;
-    color: #FFF;
-    padding: 0
-}
-
-footer .copyright {
-    padding: 15px 0;
-}
-
-footer .copyright p {
-    margin-bottom: 0;
-    font-size: 16px;
-}
-
-/* media queries */
-
-@media (max-width: 1200px) {
+    </div>
+    <!-- Services End -->
+  
     
-    /* about */
-    
-    .about-us .row > .col-lg-6:first-of-type {
-        left: -10px;
-    }
-    .about-us .small-container .text-right p {
-        width: 70%
-    }
-    .about-us .item {
-        width: 150px
-    }
-    .about-us .item img {
-        height: 125px
-    }
-    .about-us .item:first-of-type {
-        left: 440px;
-        bottom: 154px;
-    }
-    .about-us .item:nth-of-type(2) {
-        left: 167px;
-        bottom: 153px;
-    }
-    .about-us .item:nth-of-type(3) {
-        top: 149px;
-        left: 19px;
-    }
-    .about-us .item:last-of-type {
-        left: 305px;
-        top: 132px;
-    }
-    
-    .about-us .row > div > .item:nth-of-type(3) img {
-        position: static
-    }
-    
-    .about-us .row > div > .item:nth-of-type(3) p {
-        display: none;
-    }
-
-    /* agency */
-    
-    .agency img:first-of-type, .agency img:last-of-type {
-        width: 150px
-    }
-    .agency .container > div > div img {
-        max-width: 400px;
+    <style>
+        * {
+        box-sizing: border-box;
+      }
+      
+      
+      
+      .menu1 {
+        overflow: hidden;
+        cursor: -webkit-grab;
+        cursor: grab;
         width: 100%;
-    }
-    .agency .container > div h2 {
-        bottom: 87px;
-        left: 164px;
-        font-size: 30px;
-    }
-    .agency .container > div h2 {
-        display: none;
-    }
-
-}
-
-@media (max-width: 992px) {
-    
-    /* header */
-    
-    header h1 {
-        font-size: 65px !important;
-    } 
-    
-    /* navbar */
-    
-    .navbar ul {
-        background-color: #4fcaff;
-    }
-    .navbar ul li {
-        margin: 10px 0;
-    }
-    nav.navbar form {
+        position: relative;
+        z-index: 1;
+        height: 40vh;
+      }
+      .menu1.is-dragging {
+        cursor: -webkit-grabbing;
+        cursor: grabbing;
+      }
+      .menu--wrapper {
+        counter-reset: count;
+        display: flex;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        top: 0;
+        left: 0;
         width: 100%;
-        position: static;
-    }
-    
-    /* about */
-    
-    .about-us .small-container > p + div {
-        padding: 50px 0;
-    }
-    .about-us .row > .col-lg-6:first-of-type {
-        height: 350px;
-        left: 50px;
-    }
-    .about-us .small-container .text-right p {
-        width: 100%;
-    }
-    
-    /* services */
-    
-    .services .slide {
-        width: 80%
-    }
-    
-    .services .carousel-control-next, .services .carousel-control-prev {
-        width: 50px;
-        height: 50px;
-    }
-    
-    /* agency */
-    
-    .agency img:first-of-type, .agency img:last-of-type {
-        display: none
-    }
-    .agency .container > div > div img {
+      }
+      .menu--item1 {
+        counter-increment: count;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 30vw;
+        height: 100%;
+        padding: 0 1.5vw;
+        overflow: hidden;
+      }
+      @media (max-width: 767px) {
+        .menu--item1 {
+          width: 40vw;
+          height: 40vw;
+        }
+      }
+      .menu--item1:nth-child(n+10):before {
+        content: counter(count);
+      }
+      .menu--item1 figure {
+        position: absolute;
+        z-index: 1;
         display: block;
-    }
-    .agency .container > div {
-        width: 56%;
-    }
-    
-    /* statistics */
-    
-    .statistics .col-lg-3 {
-        margin-bottom: 40px
-    }
-    
-    /* contact */
-    
-    .contact .contact-form {
-        width: 70%
-    }
-    
-    /* footer */
-    
-    footer .col-lg-3 {
-        margin-bottom: 40px;
-    }
-    
-}
-
-@media (max-width: 768px) {
-    
-    /* header */
-    
-    header h1 {
-        font-size: 50px !important;
-    } 
-    
-    /* about */
-    
-    .about-us .row > .col-lg-6:first-of-type {
-        display: none;
-    }
-    
-    /* services */
-    
-    .services .slide {
-        width: 90%
-    }
-    .services .carousel-control-next, .services .carousel-control-prev {
-        display: none;
-    }
-    
-    /* agency */
-    
-    .agency .container > div {
-        width: 87%;
-    }
-    
-}
-
-
-
-.testimonial_blog {
-    background: #a1a1a1;
-    width: 100%;
-    padding: 40px 50px;
-    box-shadow: 50px 50px 0 0 #4fcaff;
-}
-
-.testimonial_blog p {
-    color: #fff;
-}
-
-.testimonial_blog p + p {
-    margin: 0;
-}
-
-.testimonial_blog p:first-child {
-    font-size: 30px;
-    font-weight: 500;
-}
-
-.subcribe {
-    background: #4fcaff;
-    padding: 80px 0;
-}
-
-.subcribe h3 {
-    color: #fff;
-}
-
-.subcribe p {
-    margin: 0;
-    color: #fff;
-}
-
-.subcribe form {
-    height: 72px;
-    background: yellow;
-    margin-top: 20px;
-}
-
-.subcribe form {
-    height: 72px;
-    background: #fff;
-    margin-top: 20px;
-    padding: 0;
-    font-weight: 300;
-    font-size: 19px;
-    display: flex;
-}
-
-.subcribe form input {
-    margin: 0;
-    padding: 0 30px;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    font-weight: 300;
-}
-
-.subcribe form button {
-    background: #fa3e19;
-    color: #fff;
-    width: 255px;
-    border: none;
-    font-size: 20px;
-}
-
-.subcribe form button:hover,
-.subcribe form button:focus {
-    background: #111;
-    color: #fff;
-}
-
-footer .item p img {
-    position: absolute;
-    left: 0;
-    top: 5px;
-}
-
-footer .item p {
-    position: relative;
-    padding-left: 25px;
-    font-size: 16px;
-    margin: 0 0 10px 0;
-}
-
-footer .copyright {
-    padding: 15px 0 16px;
-    border-top: solid #10d0e7 1px;
-    margin-top: 30px;
-}
-
-footer .item p strong {
-    font-weight: 700;
-    margin-bottom: 5px;
-    float: left;
-    width: 100%;
-}
-
-footer {
-    display: block;
-    overflow: hidden;
-    background-color: #0c2326;
-    padding: 90px 0 0; 
-}
-
-.cpy {
-    margin: 0;
-    padding: 0;
-}
-
-footer .item h4 {
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.navbar-light .navbar-toggler {
-    color: #000;
-    background: #4fcaff;
-    width: 50px;
-    padding: 0;
-    height: 45px;
-    border: none;
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-
-.ovarlay_slide_cont {
-    background: rgba(5,3,0,0.63);
-    position: absolute;
-    width: 70%;
-    margin: 0 15%;
-    z-index: 1111111111;
-    top: 0;
-    left: 0;
-    padding: 50px 60px 70px;
-}
-
-.ovarlay_slide_cont h2 {
-    font-size: 45px;
-}
-
-.ovarlay_slide_cont p {
-    color: #fff;
-    font-weight: 300;
-    margin: 0 0 30px 0;
-    font-size: 19px;
-    padding: 0;
-    line-height: 28px;
-}    
-
-.h3, h3 {
-    font-size: 30px;
-}
-
-.about_section h3 {
-    font-size: 30px;
-}
-
-.about_section h4 {
-    color: #4fcaff;
-    font-size: 16px;
-    margin: 0;
-}
-
-h3.blog_head {
-    width: 100%;
-    float: left;
-    background: #fff;
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #090101;
-    margin: 0;
-    min-height: 50px;
-    line-height: 50px;
-}
-
-.service_blog h3.blog_head {
-    float: left;
-    background: #4fcaff;
-    text-align: center;
-    font-size: 18px;
-    text-transform: none;
-    margin: 0;
-    min-height: 50px;
-    line-height: 50px;
-    padding: 0 20px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 65%;
-    max-width: 300px;
-    left: 15px;
-    font-weight: 500;
-}
-
-.service_blog h3.blog_head::after {
-    width: 50px;
-    height: 50px;
-    content: "";
-    display: block;
-    position: absolute;
-    right: -35px;
-    background: #4fcaff;
-    top: 0;
-    transform: skew(-30deg);
-}
-
-.contact-form {
-    padding: 40px 50px;
-    background: #4fcaff;
-    min-height: 600px;
-    margin-top: 60px;
-}
-
-.service_blog img {
-    width: 100%;
-}
-
-}
-
-@media (max-width: 767px) {
-
-.layout_padding {
-    padding: 50px 0;
-}
-
-.about_section h3 {
-    font-size: 30px;
-    margin: 10px 0 25px 0;
-    font-weight: 700;
-    line-height: 32px;
-}
-
-.h3, h3 {
-    font-size: 30px;
-    font-weight: 700;
-    color: #3a3a3a;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-}
-
-h3.blog_head {
-    width: 100%;
-    float: left;
-    background: #fff;
-    text-align: center;
-    font-size: 20px;
-    text-transform: uppercase;
-    color: #090101;
-    margin: 0;
-    min-height: 55px;
-    line-height: 55px;
-}
-
-.service_blog h3.blog_head {
-    float: left;
-    background: #4fcaff;
-    text-align: center;
-    font-size: 22px;
-    text-transform: none;
-    margin: 0;
-    min-height: 50px;
-    line-height: 50px;
-    padding: 0 40px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    width: 70%;
-    max-width: 300px;
-    left: 15px;
-}
-
-.contact-form {
-    padding: 35px 40px;
-    background: #4fcaff;
-    min-height: 600px;
-    margin-top: 20px;
-}
-
-.contact-form form input {
-    margin: 10px 0;
-}
-
-#contact img {
-    margin-top: 30px;
-}
-
-.testimonial_blog {
-    background: #a1a1a1;
-    width: 100%;
-    padding: 30px 30px;
-    box-shadow: 10px 10px 0 0 #4fcaff;
-}
-
-.testimonial_blog p:first-child {
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 17px;
-    font-weight: 300;
-}
-
-.subcribe form {
-    height: auto;
-    background: #fff;
-    margin-top: 20px;
-    padding: 0;
-    font-weight: 300;
-    font-size: 19px;
-    display: block;
-}
-
-.subcribe form input {
-    margin: 0;
-    padding: 20px 30px;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    font-weight: 300;
-}
-
-.subcribe form button {
-    background: #fa3e19;
-    color: #fff;
-    width: 100%;
-    border: none;
-    font-size: 20px;
-    padding: 12px 0;
-}
-
-.subcribe form button:hover,
-.subcribe form button:focus {
-    background: #111;
-    color: #fff;
-}
-
-.ovarlay_slide_cont {
-    display: none;
-}
-
-.service_blog img {
-    width: 100%;
-}
-
-}
-     </style>
-     <script src="js/jquery-3.3.1.min.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script>
-        $(function () {
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+        -webkit-appearance: none;
+        padding: 0;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        transform-origin: center;
+      }
+      .menu--item1 figure img {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover;
+        vertical-align: middle;
+        transform-origin: center;
+      }
+      .menu--item1 figure:before {
+        position: absolute;
+        z-index: 2;
+        bottom: 1vw;
+        left: 1vw;
+        display: inline-block;
+        content: "0" counter(count);
+        color: #ffffff;
+        font-size: 3vw;
+      }
+      
+      .version {
+        display: inline-block;
+        position: fixed;
+        text-align: center;
+        z-index: 1;
+        text-decoration: none;
+        background: #333;
+        font-family: sans-serif;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 12px;
+        border-radius: 10px;
+        box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        top: -30px;
+        right: -50px;
+        bottom: auto;
+        transform: rotate(45deg);
+        transform-origin: 0% 100%;
+        border-radius: 0;
+        padding: 8px 30px;
+        font-size: 11px;
+      }
+      .version:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100px;
+        
+        bottom: 0;
+        right: 0%;
+        background: transparent;
+      }
+      @media (max-width: 767px) {
+        .version {
+          transform: scale(0.6) rotate(45deg);
+          right: -100px;
+        }
+      }
+      </style>
+      
+          
+          
+           
+          <h1 style="text-align: center">
+            travaux réalisés
+          </h1>
+            <div class="menu1">
             
-            'use strict';
-            
-            var winH = $(window).height();
-            
-            $('header').height(winH);  
-            
-            $('header .container > div').css('top', (winH / 2) - ( $('header .container > div').height() / 2));
-            
-            $('.navbar ul li a.search').on('click', function (e) {
-                e.preventDefault();
-            });
-            $('.navbar a.search').on('click', function () {
-                $('.navbar form').fadeToggle();
-            });
-            
-            $('.navbar ul.navbar-nav li a').on('click', function (e) {
-                
-                var getAttr = $(this).attr('href');
-                
-                e.preventDefault();
-                $('html').animate({scrollTop: $(getAttr).offset().top}, 1000);
-            });
-        })
-     </script>
+              @foreach ($decorator_images as $image)
+              <div class="menu--item1">
+                <figure> 
+                    <div class="creation-item1">
+                        <img src="{{ asset('storage/' . $image->path) }}" alt="Creation Image">
+                    </div>
+                </figure>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        @endsection
+       
+      
+        <!-- partial -->
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js'></script><script  src="./script.js"></script>
+          
+      
+      
+      @section('styles')
+          <!-- Add the local CSS for the Slick slider -->
+          <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+          <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+      @endsection
+      @section('scripts')
+         <script>
+          /*--------------------
+      Vars
+      --------------------*/
+      const $menu = document.querySelector('.menu1');
+      const $items = document.querySelectorAll('.menu--item1');
+      const $images = document.querySelectorAll('.menu--item1 img');
+      let menuWidth = $menu.clientWidth;
+      let itemWidth = $items[0].clientWidth;
+      let wrapWidth = $items.length * itemWidth;
+      
+      let scrollSpeed = 0;
+      let oldScrollY = 0;
+      let scrollY = 0;
+      let y = 0;
+      
+      
+      /*--------------------
+      Lerp
+      --------------------*/
+      const lerp = (v0, v1, t) => {
+        return v0 * (1 - t) + v1 * t;
+      };
+      
+      
+      /*--------------------
+      Dispose
+      --------------------*/
+      const dispose = scroll => {
+        gsap.set($items, {
+          x: i => {
+            return i * itemWidth + scroll;
+          },
+          modifiers: {
+            x: (x, target) => {
+              const s = gsap.utils.wrap(-itemWidth, wrapWidth - itemWidth, parseInt(x));
+              return `${s}px`;
+            } } });
+      
+      
+      };
+      dispose(0);
+      
+      
+      /*--------------------
+      Wheel
+      --------------------*/
+      const handleMouseWheel = e => {
+        scrollY -= e.deltaY * 0.9;
+      };
+      
+      
+      /*--------------------
+      Touch
+      --------------------*/
+      let touchStart = 0;
+      let touchX = 0;
+      let isDragging = false;
+      const handleTouchStart = e => {
+        touchStart = e.clientX || e.touches[0].clientX;
+        isDragging = true;
+        $menu.classList.add('is-dragging');
+      };
+      const handleTouchMove = e => {
+        if (!isDragging) return;
+        touchX = e.clientX || e.touches[0].clientX;
+        scrollY += (touchX - touchStart) * 2.5;
+        touchStart = touchX;
+      };
+      const handleTouchEnd = () => {
+        isDragging = false;
+        $menu.classList.remove('is-dragging');
+      };
+      
+      
+      /*--------------------
+      Listeners
+      --------------------*/
+      $menu.addEventListener('mousewheel', handleMouseWheel);
+      
+      $menu.addEventListener('touchstart', handleTouchStart);
+      $menu.addEventListener('touchmove', handleTouchMove);
+      $menu.addEventListener('touchend', handleTouchEnd);
+      
+      $menu.addEventListener('mousedown', handleTouchStart);
+      $menu.addEventListener('mousemove', handleTouchMove);
+      $menu.addEventListener('mouseleave', handleTouchEnd);
+      $menu.addEventListener('mouseup', handleTouchEnd);
+      
+      $menu.addEventListener('selectstart', () => {return false;});
+      
+      
+      /*--------------------
+      Resize
+      --------------------*/
+      window.addEventListener('resize', () => {
+        menuWidth = $menu.clientWidth;
+        itemWidth = $items[0].clientWidth;
+        wrapWidth = $items.length * itemWidth;
+      });
+      
+      
+      /*--------------------
+      Render
+      --------------------*/
+      const render = () => {
+        requestAnimationFrame(render);
+        y = lerp(y, scrollY, .1);
+        dispose(y);
+      
+        scrollSpeed = y - oldScrollY;
+        oldScrollY = y;
+      
+        gsap.to($items, {
+          skewX: -scrollSpeed * .2,
+          rotate: scrollSpeed * .01,
+          scale: 1 - Math.min(100, Math.abs(scrollSpeed)) * 0.003 });
+      
+      };
+      render();
+         </script>
+      
+    <!-- Appointment Start -->
+    {{-- <div class="container-fluid py-6 px-5">
+            <div class="row gx-5">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h1 class="display-5 text-uppercase mb-4">Donnez-nous <span class="text-primary"> votre avis</span></h1>
+                    </div>
+                    <p class="mb-5">donnez-nous votre avis et faites-nous part de vos commentaires.</p>
+                  
+                </div>
+                <div class="col-lg-8">
+                    <div class="bg-light text-center p-5">
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control border-0" placeholder="Votre Nom" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="email" class="form-control border-0" placeholder="Votre Email" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                   
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control border-0" rows="5" placeholder="Message"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div> --}}
+    <!-- Appointment End -->
+
+
+    <!-- Testimonial Start -->
+    {{-- <div class="container-fluid bg-light py-6 px-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+            <h1 class="display-5 text-uppercase mb-4">Ce que <span class="text-primary">Nos  </span> Client dite!!!</h1>
+        </div>
+        <div class="row gx-0 align-items-center">
+            <div class="col-xl-4 col-lg-5 d-none d-lg-block">
+                <img class="img-fluid w-100 h-100" src="{{ asset('imgs/testimonial.jpg')}}">
+            </div>
+            <div class="col-xl-8 col-lg-7 col-md-12">
+                <div class="testimonial bg-light">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="row gx-4 align-items-center">
+                            <div class="col-xl-4 col-lg-5 col-md-5">
+                                <img class="img-fluid w-100 h-100 bg-light p-lg-3 mb-4 mb-md-0" src="{{ asset('imgs/testimonial-1.jpg')}}" alt="">
+                            </div>
+                            <div class="col-xl-8 col-lg-7 col-md-7">
+                                <h4 class="text-uppercase mb-0">Client Name</h4>
+                                <p>Profession</p>
+                                <p class="fs-5 mb-0"><i class="fa fa-2x fa-quote-left text-primary me-2"></i> Dolores sed duo
+                                    clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
+                                    lorem magna ut labore et tempor diam tempor erat. Erat dolor rebum sit
+                                    ipsum.</p>
+                            </div>
+                        </div>
+                        <div class="row gx-4 align-items-center">
+                            <div class="col-xl-4 col-lg-5 col-md-5">
+                                <img class="img-fluid w-100 h-100 bg-light p-lg-3 mb-4 mb-md-0" src="{{ asset('imgs/testimonial-2.jpg')}}" alt="">
+                            </div>
+                            <div class="col-xl-8 col-lg-7 col-md-7">
+                                <h4 class="text-uppercase mb-0">Client Name</h4>
+                                <p>Profession</p>
+                                <p class="fs-5 mb-0"><i class="fa fa-2x fa-quote-left text-primary me-2"></i> Dolores sed duo
+                                    clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem
+                                    lorem magna ut labore et tempor diam tempor erat. Erat dolor rebum sit
+                                    ipsum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    <!-- Testimonial End -->
+ <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+     
 @endsection

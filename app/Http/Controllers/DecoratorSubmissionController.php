@@ -7,49 +7,48 @@ use App\Models\DecoratorComment;
 use Illuminate\Http\Request;
 use App\Models\DecoratorSubmission;
 use App\Models\DecoratorImage;
+use App\Models\Speciality;
+
+
 class DecoratorSubmissionController extends Controller
 {
     public function listDecorators(Request $request)
 {
-    // Fetch all unique addresses and specialties to populate the filter dropdowns
-    $adresses = DecoratorSubmission::pluck('adresse')->unique();
-    $specialites = DecoratorSubmission::pluck('specialite')->unique();
+    $selectedAdresse = $request->input('adresse');
+    $selectedSpecialite = $request->input('specialite');
 
-    // Get selected filters from the request
-    $selectedAdresse = $request->query('adresse');
-    $selectedSpecialite = $request->query('specialite');
+    $decoratorsQuery = DecoratorSubmission::query();
 
-    // Start with a base query for decorators
-    $query = DecoratorSubmission::query();
-
-    // Apply filters if they are selected
     if ($selectedAdresse) {
-        $query->where('adresse', $selectedAdresse);
+        $decoratorsQuery->where('adresse', $selectedAdresse);
     }
 
     if ($selectedSpecialite) {
-        $query->where('specialite', $selectedSpecialite);
+        $decoratorsQuery->whereHas('specialities', function ($query) use ($selectedSpecialite) {
+            $query->where('name', $selectedSpecialite);
+        });
     }
 
-    // Get the filtered decorators
-    $decorators = $query->get();
+    $decorators = $decoratorsQuery->get();
+    $adresses = DecoratorSubmission::distinct()->pluck('adresse');
+    $specialites = Speciality::distinct()->pluck('name');
 
-    foreach ($decorators as $decorator) {
-        // Fetch comments for the current decorator
-        $comments = DecoratorComment::where('decorator_id', $decorator->id)->get();
-    }
-
-    $currentUserId = Auth::id();
-
-    return view('decorators.list', compact('decorators', 'adresses', 'selectedAdresse', 'specialites', 'selectedSpecialite', 'currentUserId'));
+    return view('decorators.list', compact('decorators', 'adresses', 'selectedAdresse', 'specialites', 'selectedSpecialite'));
 }
 
 
-    public function showForm()
-    {
-        $currentUserId = Auth::id();
-        return view('decorators.form', compact('currentUserId'));
-    }
+    
+    
+
+
+
+public function showForm()
+{
+    $currentUserId = Auth::id();
+    $specialities = Speciality::all(); // Get all specialities
+
+    return view('decorators.form', compact('currentUserId', 'specialities'));
+}
 
     public function showDecorator($id)
     {
@@ -71,31 +70,31 @@ class DecoratorSubmissionController extends Controller
             'email' => 'required|email|max:255',
             'telephone' => 'nullable|string|max:20',
             'adresse' => 'nullable|string|max:255',
-            'specialite' => 'required|string|in:cuisine,salon,bureau,chambres',
             'description' => 'nullable|string',
-            
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,jpeg,webp|max:2048',
+    
+            // Add validation for specialities
+            'specialities' => 'nullable|array', // Ensure it's an array
+            'specialities.*' => 'exists:specialities,id', // Ensure specialities exist in the database
         ]);
     
         // Check if a decorator submission with the same email already exists
         $existingSubmission = DecoratorSubmission::where('email', $validatedData['email'])->first();
     
         if ($existingSubmission) {
-            return redirect()->back()->withErrors(['email' => 'Email is already taken. Please choose a different one.']);
+            return redirect()->back()->withInput()->withErrors(['email' => 'Email is already taken. Please choose a different one.']);
         }
     
-        // Save the main decorator submission data to the database
+        // Create the decorator submission
         $decoratorSubmission = DecoratorSubmission::create([
             'nom' => $validatedData['nom'],
             'prenom' => $validatedData['prenom'],
             'email' => $validatedData['email'],
             'telephone' => $validatedData['telephone'],
             'adresse' => $validatedData['adresse'],
-            'specialite' => $validatedData['specialite'],
             'description' => $validatedData['description'],
-         // Hash the password before saving
-            'user_id' => Auth::id(), // Set the user_id based on the authenticated user
+            'user_id' => Auth::id(),
         ]);
     
         // Save the decorator's avatar picture if provided
@@ -112,14 +111,15 @@ class DecoratorSubmissionController extends Controller
                 $decoratorSubmission->images()->save($decoratorImage);
             }
         }
-        
     
-        // Redirect back with a success message
-        return redirect()->back()->with('success', 'Decorator submission successful!');
-        if (DecoratorSubmission::where('user_id', Auth::id())->exists()) {
-            return redirect()->back()->withErrors(['message' => 'You have already submitted a decorator profile.']);
-        }
+        // Attach selected specialities to the decorator submission
+        $selectedSpecialities = $validatedData['specialities'] ?? [];
+        $decoratorSubmission->specialities()->attach($selectedSpecialities);
+    
+        return redirect()->route('decorators.list')->with('success', 'Decorator submission successful.');
     }
+    
+
     public function show($id)
 {
     // Find the decorator by ID along with its comments
@@ -143,6 +143,19 @@ public function indexAll()
 
     // Pass the decorator_images variable to the creations.index view
     return view('creations.index', compact('decorator_images'));
+}
+public function destroy($id)
+{
+    $decorator = DecoratorSubmission::find($id); // Update to use the correct model name
+
+    if (!$decorator) {
+        return redirect()->route('decorators.list')->with('error', 'Decorator not found');
+    }
+
+    // Perform the deletion
+    $decorator->delete();
+
+    return redirect()->route('decorators.list')->with('success', 'Decorator deleted successfully');
 }
 
 }

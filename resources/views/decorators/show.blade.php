@@ -21,10 +21,12 @@
                     <img style="border-radius: 50px;width: 160px" src="{{ asset('storage/' . $decorator->avatar) }}" alt="{{ $decorator->nom }} {{ $decorator->prenom }}">
                     <h2>Nom: {{ $decorator->nom }}</h2>
                     <h2>Prenom: {{ $decorator->prenom }}</h2>
-                    <h3>Spécialité: {{ ucfirst($decorator->specialite) }}</h3>
+                    <h3>Spécialité: @foreach($decorator->specialities as $speciality)
+                        {{ $speciality->name }},<br>
+                        @endforeach</h3>
                     <p>Téléphone: {{ $decorator->telephone ?? 'N/A' }}</p>
                     <p>Adresse: {{ $decorator->adresse ?? 'N/A' }}</p>
-                    <p class="small fst-italic">{{ $decorator->description ?? 'N/A' }}</p>
+                    <textarea name="" id="" cols="30" rows="10" readonly>Ma Description:{{ $decorator->description ?? 'N/A' }}</textarea>
                     
                         @if (auth()->check() && $decorator->user->id !== auth()->user()->id)
                         <a href="{{ route('messages.create', ['receiver_id' => $decorator->user_id]) }}">Message</a>
@@ -37,6 +39,7 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                       
                       <!-- Add a new comment form -->
+                      @if (Auth::user()->role == 1 || Auth::user()->role == 2 )
     <h2>Ajouter un commentaire</h2>
     <form action="{{ route('decorators.comment', ['id' => $decorator->id]) }}" method="POST">
         @csrf
@@ -54,7 +57,7 @@
                 </div>
             @enderror
         </div>
-    
+       
         <div class="form-group">
             <label for="comment">Commentaire:</label>
             <textarea name="comment" rows="4" required></textarea>
@@ -72,6 +75,7 @@
         </div>
     
         <button type="submit">Soumettre le commentaire</button>
+        @endif
         
     </form>
                       
@@ -181,7 +185,9 @@
                 @foreach($comments as $comment)
                     <div class="comment">
                         <p><strong>Nom:</strong> {{ $comment->name }}</p>
+                        <br>
                         <p><strong>Email:</strong> {{ $comment->email }}</p>
+                        <br>
                         <p>*{{ $comment->comment }}</p>
                         <div class="rating">
                             <!-- Display star rating here -->
@@ -196,7 +202,7 @@
                     </div>
                 @endforeach
             @else
-                <p>No comments yet.</p>
+                <p>Aucun Commentaire pour le moment.</p>
             @endif
             @if($comments->count() > 0)
             <?php

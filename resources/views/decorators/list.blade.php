@@ -9,7 +9,7 @@
     <!-- Filter Form -->
     <div class="filter">
         <form action="{{ route('decorators.list') }}" method="GET">
-            {{-- <label for="adresse">Filtrer par Adresse:</label> --}}
+            <label for="adresse">Filtrer par Adresse:</label>
             <span class="custom-dropdown big">
             <select name="adresse" id="adresse">
                 <option value="">Tous les adresses</option>
@@ -213,9 +213,18 @@ button:hover{
                           </div>
                           <div class="button">
                               <button class="aboutMe"><a href="{{ route('decorators.show', ['id' => $decorator->id]) }}">Lire Plus</a></button>
+                              @if (Auth::user()->role == 1)
+                              <form action="{{ route('decorators.destroy', ['id' => $decorator->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                            @endif
                           </div>
+                         
                       </div>
                   </div>
+                  
                   @endforeach
               </div>
           </div>

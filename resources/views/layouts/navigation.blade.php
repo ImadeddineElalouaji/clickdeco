@@ -285,15 +285,15 @@ header.sticky .menu-item .sub-menu{
         <ul class="menu">
           <div class="close-btn"></div>
           <li class="menu-item"><a href="{{ route('home') }}">Accueil</a></li>
-          <li class="menu-item">
-            <a class="sub-btn" href="{{ route('creations.index') }}">Gallery</a>
-          </li>
-          @if(Auth::check() && Auth::user()->role == 3)
+          {{-- <li class="menu-item">
+            <a class="sub-btn" href="{{ route('creations.index') }}">Gellerie</a>
+          </li> --}}
+          {{-- @if(Auth::check() && Auth::user()->role == 3)
             <li class="menu-item">
-              <a class="sub-btn" href="{{ route('showForm') }}">Votre Profile</a>
+              <a class="sub-btn" href="{{ route('decorators.list') }}">Mon Profile</a>
             </li>
-          @endif
-          <li class="menu-item"><a href="{{ route('decorators.list') }}">List des Decorateur</a></li>
+          @endif --}}
+          <li class="menu-item"><a href="{{ route('decorators.list') }}">Liste des Decorateurs</a></li>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="{{ route('logout') }}" 

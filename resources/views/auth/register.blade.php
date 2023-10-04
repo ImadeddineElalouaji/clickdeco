@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="card-body login-card-body">
-        <p class="login-box-msg">{{ __('Register') }}</p>
+        <p class="login-box-msg"><img src="images/mg.png" alt="" style="width: 150px"></p>
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-image: url('https://lecolefrancaise.fr/wp-content/uploads/2020/06/formation-d%C3%A9corateur-int%C3%A9rieur-Toulouse.jpg');
+                background-image: url('https://images.pexels.com/photos/1005058/pexels-photo-1005058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -74,11 +74,11 @@
             </div>
 
             <div class="input-group mb-3">
-                <label for="role" class="col-form-label">{{ __('Role') }}</label>
+                {{-- <label for="role" class="col-form-label">{{ __('Role') }}</label> --}}
                 <select name="role" id="role" class="form-control @error('role') is-invalid @enderror" required>
-                    <option value="1">Admin</option>
-                    <option value="2">Decorator</option>
-                    <option value="3">Client</option>
+                    {{-- <option value="1">Admin</option> --}}
+                    <option value="3">Decorator</option>
+                    <option value="2">Client</option>
                 </select>
                 @error('role')
                 <span class="error invalid-feedback">
@@ -86,6 +86,7 @@
                 </span>
                 @enderror
             </div>
+            
 
             <div class="row">
                 <div class="col-12">
