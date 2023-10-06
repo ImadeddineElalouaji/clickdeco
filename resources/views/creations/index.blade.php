@@ -149,15 +149,18 @@
   
 <div class="menu1">
     
-      @foreach ($decorator_images as $image)
-      <div class="menu--item1">
-        <figure> 
-            <div class="creation-item1">
-                <img src="{{ asset('storage/' . $image->path) }}" alt="Creation Image">
-            </div>
-        </figure>
-      </div>
-      @endforeach
+  @foreach ($decorator_images as $image)
+  <div class="menu--item1">
+      <figure>
+          <a href="{{ route('decorator.show', $image->decorator_submission_id) }}">
+              <div class="creation-item1">
+                  <img src="{{ asset('storage/' . $image->path) }}" alt="Creation Image">
+              </div>
+          </a>
+      </figure>
+  </div>
+@endforeach
+
     </div>
   </div>
 @endsection

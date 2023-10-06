@@ -11,6 +11,8 @@ use App\Http\Controllers\DevisController;
 use App\Http\Controllers\LoginController;
 
 Route::get('/devis', [DevisController::class, 'index'])->name('devis.index');
+Route::get('decorator/{id}', [DecoratorSubmissionController::class, 'show'])->name('decorator.show');
+Route::get('/decorator_submissions/{decorator_submission}', [DecoratorSubmissionController::class, 'show'])->name('decorator_submissions.show');
 
 Route::get('/devis', [DevisController::class, 'index'])->name('devis.index');
 Route::get('/devis/create', [DevisController::class, 'create'])->name('devis.create');
