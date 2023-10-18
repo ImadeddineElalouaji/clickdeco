@@ -294,6 +294,7 @@ header.sticky .menu-item .sub-menu{
             </li>
           @endif --}}
           <li class="menu-item"><a href="{{ route('decorators.list') }}">Liste des Decorateurs</a></li>
+          <li class="menu-item"><a href="{{ route('decorators.list') }}">Boutique</a></li>
           <form method="POST" action="{{ route('logout') }}">
             @csrf
             <a href="{{ route('logout') }}" 

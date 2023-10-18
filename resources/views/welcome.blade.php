@@ -335,6 +335,7 @@ header.sticky .menu-item .sub-menu{
              
                <li class="menu-item"><a href="{{'apropos'}}">A propos</a></li>
                <li class="menu-item"><a href="{{'contact'}}">Contact</a></li>
+               <li class="menu-item"><a href="http://clickdeco.free.nf">Boutique</a></li>
                @if (Route::has('login'))
            
                @auth
