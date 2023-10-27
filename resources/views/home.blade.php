@@ -81,7 +81,8 @@
       @endif
                     
                     <div class="service-icon bg-white">
-                        <i class="fa fa-3x fa-building text-primary"></i>
+                        <i class="fa fa-3x fa-paint-brush text-orange"></i>
+
                     </div>
                     <div class="px-4 pb-4">
                       @if (Auth::user()->role == 3)
@@ -112,7 +113,11 @@
       <img class="img-fluid" src="{{ asset('imgs/image-2.jpeg')}}" alt="">
       @endif
                     <div class="service-icon bg-white">
-                        <i class="fa fa-3x fa-home text-primary"></i>
+                        
+                            <i class="fa fa-envelope fa-stack-2x text-primary"></i>
+                            
+                          
+
                     </div>
                     <div class="px-4 pb-4">
                       @if (Auth::user()->role == 3)
@@ -143,7 +148,8 @@
               <div class="service-item bg-white rounded d-flex flex-column align-items-center text-center">
                   <img class="img-fluid" src="{{ asset('imgs/service-3.jpg')}}" alt="">
                   <div class="service-icon bg-white">
-                      <i class="fa fa-3x fa-drafting-compass text-primary"></i>
+                    <i class="fa fa-shopping-cart fa-stack-2x text-primary"></i>
+
                   </div>
                   <div class="px-4 pb-4">
                       <h4 class="text-uppercase mb-3">Notre Boutique</h4>
